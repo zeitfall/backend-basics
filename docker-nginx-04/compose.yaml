@@ -1,0 +1,17 @@
+services:
+  api:
+    container_name: ${API_HOST}
+    env_file: .env
+    build:
+      context: ./api
+  web:
+    container_name: ${WEB_HOST}
+    env_file: .env
+    build:
+      context: ./web
+    ports:
+      - ${WEB_PORT}:${WEB_PORT}
+    volumes:
+      - ./web/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - api

@@ -1,0 +1,19 @@
+server {
+    listen ${WEB_PORT};
+
+    server_name ${WEB_HOST};
+
+    location / {
+        root  /usr/share/nginx/html;
+        index index.html;
+    }
+
+    location /api {
+        add_header Access-Control-Allow-Origin    http://${WEB_HOST}:${WEB_PORT};
+        add_header Access-Control-Request-Method  "GET";
+        add_header Access-Control-Request-Headers "Content-Type, Content-Length";
+
+        proxy_http_version 1.1;
+        proxy_pass         http://${API_HOST}:${API_PORT}/;
+    }
+}

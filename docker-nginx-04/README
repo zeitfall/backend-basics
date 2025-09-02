@@ -1,0 +1,1 @@
+A simple client-server application. Both client and server apps are different containers. Nginx works as a reverse-proxy here, it proxies requests to the nodejs application.

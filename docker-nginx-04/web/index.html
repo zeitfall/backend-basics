@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                border: none;
+                outline: none;
+            }
+
+            body {
+                max-width: 48rem;
+                margin-inline: auto;
+                padding-inline: 1rem;
+            }
+
+            pre {
+                margin-block: 1rem;
+                padding: .5rem;
+                border-radius: .5rem;
+                background-color: #f0f0f0;
+                resize: block;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <pre>...</pre>
+
+        <script defer>
+            const preElement = document.querySelector('pre');
+
+            fetchData();
+
+            async function fetchData() {
+                try {
+                    const response = await fetch('http://localhost:3000/api');
+                    const result = await response.json();
+
+                    if (result.data) {
+                        preElement.textContent = JSON.stringify(result.data, null, 2);
+                    }
+                }
+                catch (error) {
+                    alert(error.message);    
+                }
+            }
+        </script>
+    </body>
+</html>

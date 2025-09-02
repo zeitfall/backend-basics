@@ -1,0 +1,38 @@
+html {
+  line-height: 1.25;
+}
+
+body {
+  max-width: 32rem;
+  margin-inline: auto;
+  padding: 4rem 1rem;
+}
+
+nav {
+  display: flex;
+  margin-inline: -.5rem;
+  margin-bottom: .75rem;
+}
+
+nav a {
+  padding-inline: .5rem;
+  line-height: 2;
+}
+
+nav a:hover {
+  background-color: rgba(0, 0, 0, 5%);
+}
+
+hgroup {
+  margin-bottom: 1rem;
+}
+
+hgroup h1 {
+  margin-bottom: .5rem;
+}
+
+img {
+  max-height: min(50vh, 32rem);
+  aspect-ratio: .5;
+  object-fit: cover;
+}

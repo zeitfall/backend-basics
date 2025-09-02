@@ -1,0 +1,13 @@
+services:
+  app:
+    build: 
+      context: .
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+        CONTAINER_PORT: ${CONTAINER_PORT}
+    command: npm run start
+    ports:
+      - ${HOST_PORT}:${CONTAINER_PORT}
+    environment:
+      CONTAINER_PORT: ${CONTAINER_PORT}
+      HOST_PORT: ${HOST_PORT}
