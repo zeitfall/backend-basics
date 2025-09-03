@@ -1,17 +1,49 @@
 services:
-  api:
-    container_name: ${API_HOST}
-    env_file: .env
-    build:
-      context: ./api
-  web:
-    container_name: ${WEB_HOST}
-    env_file: .env
-    build:
-      context: ./web
-    ports:
-      - ${WEB_PORT}:${WEB_PORT}
+  server_1:
+    container_name: ${SERVER_HOST_1}
+    environment:
+      SERVER_HOST: ${SERVER_HOST_1}
+      SERVER_PORT: ${SERVER_PORT_1}
+    build: .
     volumes:
-      - ./web/index.html:/usr/share/nginx/html/index.html:ro
+      - server-node-modules:/app/node_modules
+      - ./index.js:/app/index.js
+    command: npm run start
+
+  server_2:
+    container_name: ${SERVER_HOST_2}
+    environment:
+      SERVER_HOST: ${SERVER_HOST_2}
+      SERVER_PORT: ${SERVER_PORT_2}
+    build: .
+    volumes:
+      - server-node-modules:/app/node_modules
+      - ./index.js:/app/index.js
+    command: npm run start
+
+  server_3:
+    container_name: ${SERVER_HOST_3}
+    environment:
+      SERVER_HOST: ${SERVER_HOST_3}
+      SERVER_PORT: ${SERVER_PORT_3}
+    build: .
+    volumes:
+      - server-node-modules:/app/node_modules
+      - ./index.js:/app/index.js
+    command: npm run start
+
+  nginx:
+    container_name: ${NGINX_HOST}
+    image: nginx:1.29.1-alpine3.22
+    env_file: .env
+    volumes:
+      - ./default.conf.template:/etc/nginx/templates/default.conf.template:ro
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
     depends_on:
-      - api
+      - server_1
+      - server_2
+      - server_3
+    
+volumes:
+  server-node-modules:

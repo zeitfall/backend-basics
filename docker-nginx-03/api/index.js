@@ -6,7 +6,7 @@ const API_PORT = process.env.API_PORT;
 
 initServer();
 
-async function initServer() {
+function initServer() {
     try {
         if (API_HOST && API_PORT) {
             const app = express();
