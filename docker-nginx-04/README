@@ -1,0 +1,1 @@
+Tried to use Nginx as a load balancer. It spreads all request among 3 node server instances.
