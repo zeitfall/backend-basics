@@ -1,0 +1,2 @@
+* * * * * root echo "Hello, world!" >> /proc/1/fd/1 2>&1
+#
