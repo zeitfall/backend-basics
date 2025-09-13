@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# [05]: While Loop
+# [05]: While Loops
 
 # counter=0
 
